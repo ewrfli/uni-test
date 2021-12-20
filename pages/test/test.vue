@@ -23,16 +23,21 @@
 		 
 		 <view>
 			 watch:
-			 <input type="text" v-model="word">
+			 <input type="text" v-model="word" ref="watchInput">
 		</view>
+		
+		<sonComponents :word.sync="word" ref="sonComponents" @click="clicksonComponents()"></sonComponents>
+		<button type="default" @click="clicksonComponents()"> clicksonComponents</button>
 	</view>
 </template>
 
 <script>
+// import 	sonComponents from '../../components/sonComponents/sonComponents.vue'
 	export default {
+		// components:{ sonComponents },
 		data() {
 			return {
-				word: 'word',
+				word: 'wordAAAA',
 				firstName: 'Foo',
 				lastName: 'Bar',
 				message: 'Hello',
@@ -102,6 +107,10 @@
 			},
 			methodsReversedMessage(){
 				return this.message.split('').reverse().join('')
+			},
+			clicksonComponents(){
+				console.log('this.$ref',this.$refs.sonComponents)
+				this.$refs.watchInput.focus()
 			}
 		}
 	}

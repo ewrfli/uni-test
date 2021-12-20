@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
@@ -12,6 +13,10 @@
 		
 		 <input v-model="message" placeholder="edit me">
 		 <text>Message is: {{ message }}</text>
+		 
+		 <navigator url="/pages/test/test" hover-class="navigator-hover">
+		 	<button type="default">跳转到新页面</button>
+		 </navigator>
 	</view>
 </template>
 

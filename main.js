@@ -1,11 +1,16 @@
 import App from './App'
-
-// #ifndef VUE3
 import Vue from 'vue'
+import store from './store'
+// #ifndef VUE3
+
+Vue.prototype.$store = store
 Vue.config.productionTip = false
+
+// 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif
