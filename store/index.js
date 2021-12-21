@@ -24,7 +24,8 @@ const store = new Vuex.Store({
 				text: '我是内容二',
 				done: false
 			}
-		]
+		],
+		count: 10
     },
 	 getters: {
 		doneTodos: state => {
@@ -40,10 +41,13 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
-		add(state) {
-			// 变更状态
-			state.age += 2
-		}
+		// add(state) {
+		// 	// 变更状态
+		// 	state.age += 2;
+			
+		// 	//action
+		// 	state.count +=1;
+		// }
 		// 传入参数
 		// add(state, n) {
 		// 	state.age += n
@@ -53,6 +57,27 @@ const store = new Vuex.Store({
 		// add(state, payload) {
 		// 	state.age += payload.num
 		// }
+		
+		//
+		add(state, payload) {
+			state.count += payload.amount
+		} 
+	},
+	actions:{
+		// 1.actions 通过 store.dispatch 方法触发。
+		// addCountAction (context) {
+		// 	context.commit('add')
+		// }
+		
+		//参数解构
+		// addCountAction ({commit}) {
+		// 	commit('add')
+		// }
+		
+		// actions 支持以载荷形式分发:
+		addCountAction (context , payload) {
+			context.commit('add',payload)
+		}
 	}
 
 })

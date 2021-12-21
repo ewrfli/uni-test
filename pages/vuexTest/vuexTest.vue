@@ -20,6 +20,9 @@
 		<view>doneTodosCount:{{doneTodosCount}}</view>
 		
 		<br>
+		
+		<view>action数量：{{count}}</view>
+		<button @click="addAction">增加</button>
 
 	</view>
 </template>
@@ -76,7 +79,11 @@ import { mapMutations } from 'vuex'//引入mapMutations
 				// ...
 				// 把 `this.doneCount` 映射为 `this.$store.getters.doneTodosCount`
 				// doneCount: 'doneTodosCount'
-			])
+			]),
+			//action
+			count() {
+				return this.$store.state.count
+			}
 			
 		},
 		methods: {
@@ -93,7 +100,24 @@ import { mapMutations } from 'vuex'//引入mapMutations
 				// })
 				
 			},
-			...mapMutations(['add'])//对象展开运算符直接拿到vuexmutations里add
+			...mapMutations(['add']),//对象展开运算符直接拿到vuexmutations里add
+			//action
+			// addAction () {
+			// 	store.dispatch('addCountAction')
+			// },
+			
+			//  addAction () {
+			// 	// 以载荷形式分发
+			// 	store.dispatch('addCountAction', {amount: 10})
+			// }
+			
+			addAction () {
+				// 以对象形式分发
+				store.dispatch({
+					type: 'addCountAction',
+					amount: 5
+				})
+			}
 		}
 	}
 </script>
