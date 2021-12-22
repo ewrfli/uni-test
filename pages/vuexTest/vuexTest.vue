@@ -22,7 +22,7 @@
 		<br>
 		
 		<view>action数量：{{count}}</view>
-		<button @click="addAction">增加</button>
+		<button @click="proAddCountAction({amount: 5})">增加</button>
 
 	</view>
 </template>
@@ -32,6 +32,7 @@ import store from '@/store/index.js';//需要引入store
 import { mapState } from 'vuex'//引入mapState
 import {mapGetters} from 'vuex' //引入mapGetters
 import { mapMutations } from 'vuex'//引入mapMutations
+import { mapActions } from 'vuex' //通过 mapActions 辅助函数分发。
 	export default {
 		data() {
 			return {
@@ -86,6 +87,7 @@ import { mapMutations } from 'vuex'//引入mapMutations
 			}
 			
 		},
+
 		methods: {
 			addCount() {
 				// store.commit('add')
@@ -117,7 +119,28 @@ import { mapMutations } from 'vuex'//引入mapMutations
 					type: 'addCountAction',
 					amount: 5
 				})
+			},
+
+			// 将 `this.addCountAction()` 映射为 `this.$store.dispatch('addCountAction')`
+			...mapActions([  //@click="addCountAction"  也支持传入参数（载荷）： 支持传递一个对象：
+ 				'addCountAction', 
+			]),
+
+			//组合action
+			async proAddCountAction(){
+				// store.dispatch('actionA',{amount: 10})
+				// .then(() => {
+				// 	store.dispatch('actionB',{amount: 10})
+				// })
+				// .then(() => {
+				// 	store.dispatch('actionC',{amount: 10})
+				// })
+
+				await store.dispatch('actionA',{amount: 10})
+				await store.dispatch('actionB',{amount: 10})
+				await store.dispatch('actionC',{amount: 10})
 			}
+			
 		}
 	}
 </script>

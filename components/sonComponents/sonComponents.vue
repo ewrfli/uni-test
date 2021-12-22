@@ -35,6 +35,7 @@
 			age() { //组件使用vuex
 				return this.$store.state.age 
 			}
+			//在组件中使用 this.$store.dispatch('xxx') 分发 action
 		}
 	}
 </script>

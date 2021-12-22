@@ -75,9 +75,49 @@ const store = new Vuex.Store({
 		// }
 		
 		// actions 支持以载荷形式分发:
-		addCountAction (context , payload) {
-			context.commit('add',payload)
-		}
+		// addCountAction (context , payload) {
+		// 	console.log('context, payload',context,payload) //{type: 'addCountAction', amount: 5}
+		// 	// context.commit('add',payload)
+
+		// 	//在执行累加的时候，会等待两秒才执行
+		// 	setTimeout(function () {
+		// 		context.commit('add',payload)
+		// 	}, 1000)
+		// },
+
+
+		//Promise
+		actionA (context , payload) {
+			return new Promise((resolve, reject) => {
+					setTimeout(() => {
+						console.log('actionA, payload',payload)
+						context.commit('add',payload)
+						resolve()
+					}, 1000)
+			})
+		},	
+
+		actionB (context, payload) {
+				return new Promise((resolve, reject) => {
+					setTimeout(() => {
+						console.log('actionB, payload',payload)
+						context.commit('add',payload)
+						resolve()
+					}, 500)
+			})
+		},
+
+		actionC (context, payload) {
+			return new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('actionC, payload',payload)
+					context.commit('add',payload)
+					resolve()
+				}, 300)
+		})
+	}
+
+		
 	}
 
 })
